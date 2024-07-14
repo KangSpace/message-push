@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: @artifactId@
+  cloud:
+    config:
+      # 如果想要远程配置优先级高，那么allowOverride设置为false，如果想要本地配置优先级高那么allowOverride设置为true
+      allow-override: true
+      # overrideNone为true时本地配置优先级高，包括系统环境变量、本地配置文件等
+      override-none: true
+      # 只有系统环境变量或者系统属性才能覆盖远程配置文件的配置，本地配置文件中配置优先级低于远程配置
+      override-system-properties: true
+    nacos:
+      discovery:
+        server-addr: ${SERVICE_DISCOVERY_ADDR:discory.kangspace.org:8443}
+        namespace: ${SERVICE_DISCOVERY_NAMESPACE:kangspace_dev}
+        metadata:
+          version: @project.version@
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        namespace: ${spring.cloud.nacos.discovery.namespace}
+        file-extension: yaml
+        shared-configs:
+          - application.${spring.cloud.nacos.config.file-extension}
+          - message-push-ws-gateway.${spring.cloud.nacos.config.file-extension}

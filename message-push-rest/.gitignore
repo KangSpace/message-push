@@ -1,0 +1,13 @@
+.idea
+/message-push-rest*/target
+/message-push-rest-*/target
+/message-push-rest*/target/*
+/message-push-rest-*/target/*
+
+.DS_Store
+*.iml
+
+/.idea/*
+/target/*
+
+!.mvn/wrapper/maven-wrapper.jar

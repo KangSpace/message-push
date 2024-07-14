@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: @artifactId@
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${SERVICE_DISCOVERY_ADDR:discory.kangspace.org:8443}
+        namespace: ${SERVICE_DISCOVERY_NAMESPACE:kangspace_dev}
+        metadata:
+          version: @project.version@
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        namespace: ${spring.cloud.nacos.discovery.namespace}
+        file-extension: yaml
+        shared-configs:
+          - application.${spring.cloud.nacos.config.file-extension}
+          - message-push-ws-microservice.${spring.cloud.nacos.config.file-extension}
